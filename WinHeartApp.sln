@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinHeartApp", "WinHeartApp.csproj", "{782CD696-5EA4-4A2F-895B-5BE6961B7D01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{782CD696-5EA4-4A2F-895B-5BE6961B7D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{782CD696-5EA4-4A2F-895B-5BE6961B7D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{782CD696-5EA4-4A2F-895B-5BE6961B7D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{782CD696-5EA4-4A2F-895B-5BE6961B7D01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16CD4E8D-3F1C-4D6A-9E81-C7E516CCC198}
+	EndGlobalSection
+EndGlobal

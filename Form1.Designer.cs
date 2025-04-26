@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button_test = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button_start = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +57,11 @@
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(12, 74);
             this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "ECG";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1084, 405);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "EKG_out_chart";
@@ -67,6 +75,10 @@
             this.button_start.Text = "start generation";
             this.button_start.UseVisualStyleBackColor = true;
             this.button_start.Click += new System.EventHandler(this.button_start_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -88,6 +100,7 @@
         private System.Windows.Forms.Button button_test;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button button_start;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

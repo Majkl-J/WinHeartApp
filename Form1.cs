@@ -31,6 +31,8 @@ namespace WinHeartApp
         private void button_start_Click(object sender, EventArgs e)
         {
             initialized_heart_prt = RustHeart.build_simple_heart(60, 1.0f);
+            RustHeart.simple_heart_add_noise(initialized_heart_prt, RustHeart.NoiseTypes.MainsNoise, 0.05f);
+            RustHeart.simple_heart_add_noise(initialized_heart_prt, RustHeart.NoiseTypes.RandomNoise);
             RustHeart.simple_heart_start(initialized_heart_prt, 1000);
             timer1.Interval = 100;
             timer1.Start();

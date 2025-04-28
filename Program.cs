@@ -91,5 +91,17 @@ namespace WinHeartApp
 
             return read_data;
         }
+
+        public enum NoiseTypes
+        {
+            MainsNoise,
+            RandomNoise
+        }
+
+        [DllImport("rustheart")]
+        public static extern void simple_heart_add_noise(IntPtr handler_pointer, NoiseTypes noise_type, double amplitude = 0.1f, UInt64 freq = 50);
+
+        [DllImport("rustheart")]
+        public static extern void simple_heart_reset_noise(IntPtr handler_pointer);
     }
 }

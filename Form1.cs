@@ -19,6 +19,12 @@ namespace WinHeartApp
         public Form1()
         {
             InitializeComponent();
+
+            cboPort.Text = Properties.Settings.Default.PortName;
+            cboBaudRate.Text = Properties.Settings.Default.BaudRate;
+            txtNick.Text = Properties.Settings.Default.Nick;
+
+            serialPort1.ErrorReceived += serialPort1_ErrorReceived;
         }
 
         private void button_test_Click(object sender, EventArgs e)
@@ -58,6 +64,74 @@ namespace WinHeartApp
                     chart1.Series["ECG"].Points.Add(item);
                 }
                 MessageBox.Show("Read of data done", "Data read", MessageBoxButtons.OK);
+            }
+        }
+
+        private void serialPort1_ErrorReceived(object sender, SerialErrorReceivedEventArgs e)
+        {
+            BeginInvoke(new Action(() =>
+            {
+                MessageBox.Show("Chyba na sériovém portu: " + e.EventType,
+                                "Sériová komunikace", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnOpenClose.PerformClick(); // odpojí automaticky
+            }));
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.PortName = cboPort.Text;
+            Properties.Settings.Default.BaudRate = cboBaudRate.Text;
+            Properties.Settings.Default.Nick = txtNick.Text;
+            Properties.Settings.Default.Save();
+
+            timer1.Stop();
+
+            if (serialPort1.IsOpen)
+            {
+                try { serialPort1.Close(); }
+                catch { /* případně log nebo ignorace */ }
+            }
+        }
+
+        private void btnOpenClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (btnOpenClose.Text == "Připojit")
+                {
+                    serialPort1.PortName = cboPort.Text;
+                    serialPort1.BaudRate = int.Parse(cboBaudRate.Text);
+                    serialPort1.Open();
+
+                    //timerGenerate.Start();
+                    //timerDisplay.Start();
+
+                    btnOpenClose.Text = "Odpojit";
+                }
+                else
+                {
+                    if (serialPort1.IsOpen)
+                    {
+                        timer1.Stop();
+
+                        try
+                        {
+                            serialPort1.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(this, "Chyba při zavírání portu:\n" + ex.Message,
+                                            this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                    btnOpenClose.Text = "Připojit";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, this.Text,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
